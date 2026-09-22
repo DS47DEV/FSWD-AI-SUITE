@@ -1,15 +1,14 @@
-# FSWD AI Suite — Projet concept
+# FSWD AI Suite V2
 
-Prototype SaaS statique de portfolio avec six modules : tableau de bord, chat simulé, génération de modèles de contenu, analyse locale de texte .txt, workflows simulés et historique local.
+Site statique + Netlify Function sécurisée. Déployer le contenu de ce dossier à la racine du dépôt GitHub, puis connecter à Netlify. Le mode démonstration fonctionne sans clé.
 
-## Publication
+## Activer une vraie IA
+Dans Netlify > Project configuration > Environment variables, ajouter :
+- `AI_API_KEY` : clé privée du fournisseur, jamais dans index.html ni GitHub
+- `AI_MODEL` : identifiant du modèle du fournisseur
+- `AI_BASE_URL` : URL HTTPS de base d’une API compatible OpenAI Chat Completions, **sans** `/chat/completions` final (ex. `https://api.openai.com/v1`)
 
-Envoyer `index.html` à la racine d'un dépôt GitHub, puis importer le dépôt dans Netlify. Build command : vide. Publish directory : `.`.
+Redéployer après configuration. Les requêtes peuvent être facturées par le fournisseur. Ne pas saisir de données confidentielles dans cette démo publique. Ne pas activer une clé payante sur un site public sans authentification, quotas, contrôle d’accès et limitation de débit : sinon n’importe quel visiteur peut consommer tes crédits. Pour un portfolio public, garder le mode démo ou protéger l’accès.
 
-## Important
-
-- **Pas de véritable IA** : le chat répond par scénarios prédéfinis et le générateur produit des modèles de texte.
-- **Pas de backend, comptes utilisateurs, abonnements, exécution d'automatisations ou traitement PDF**.
-- Données enregistrées dans `localStorage` sur le navigateur de l'utilisateur ; ne pas y entrer de données sensibles.
-- Aucun secret/API key ne doit être placé dans le code frontend.
-- Pour une version IA réelle : fonctions serveur Netlify ou backend sécurisé, fournisseur de modèle, authentification, base de données et garde-fous de coût.
+## État réel
+Chat, rédaction et résumé .txt utilisent l’IA uniquement si les variables sont configurées. Tableau de bord et historique restent locaux au navigateur. Automatisations simulées. Pas d’authentification, base de données, PDF ni facturation.
